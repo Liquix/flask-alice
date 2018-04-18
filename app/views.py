@@ -13,4 +13,4 @@ def about():
 
 @app.route('/database')
 def database():
-    return app.config['SQLALCHEMY_DATABASE_URI']
+    return 'Hello Flask'
