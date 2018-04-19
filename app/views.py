@@ -1,7 +1,9 @@
 # Flask views
 from flask import render_template
 
-from app import app
+from app import app, db
+from app import models
+from app.models import Report, ReportLine
 
 @app.route('/')
 def index():
@@ -13,4 +15,4 @@ def about():
 
 @app.route('/database')
 def database():
-    return 'Hello Flask'
+    return Report.query.all()[0].Substance
