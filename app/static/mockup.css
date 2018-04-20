@@ -1,0 +1,93 @@
+html, body {
+  height:100%;
+  margin: 0;
+}
+
+#sidebarContainer {
+  background-color: #3C989E;
+  width: 25%;
+  height: 100%;
+  display: flex;
+  flex-flow: column;
+}
+
+#sidebarContainer #titleText {
+  font-size: 64px;
+  font-family: "Segoe UI", "Trebuchet MS", sans-serif;
+  color: #F4CDA5;
+  font-weight: bold;
+  text-align: center;
+  line-height: 10px;
+  position: relative;
+  top: 25px;
+}
+
+#sidebarContainer #titleSubtext {
+  font-size: 36px;
+  font-family: "Segoe UI", "Trebuchet MS", sans-serif;
+  color: #F4CDA5;
+  font-style: normal;
+  font-weight: normal;
+  text-align: center;
+  line-height: 10px;
+}
+
+#inputContainer {
+  background-color: #5DB5A4;
+  width: 75%;
+  height: 20%;
+  display: flex;
+  flex-flow: column;
+  position: absolute;
+  left: 25%;
+  bottom: 0;
+}
+
+#displayContainer {
+  background-color: #FFFFF0;
+  width: 75%;
+  height: 75%;
+  display: flex;
+  flex-flow: column;
+  position: absolute;
+  left: 25%;
+  top: 0;
+  right: 0;
+  bottom: 25%;
+}
+
+#inputContainer #addLineButton {
+  font-family: Arial;
+  color: #F4CDA5;
+  font-size: 80px;
+  background: #ED5276;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+  position: absolute;
+  width: 10%;
+  right: 0;
+  left: 90%;
+  top: 0;
+  bottom: 0;
+  border-style: none;
+}
+
+#inputContainer #addLineButton:hover {
+  background: #F57A82;
+  text-decoration: none;
+}
+
+#inputContainer #addLineButton:active {
+  top: 3px;
+}
+
+p {
+  font-family: monospace;
+}
+/*
+#3C989E   Dark blue-green
+#5DB5A4   Medium seafoam green
+#F4CDA5   Sandy salmon
+#F57A82   Lighter watermelon
+#ED5276   Darker watermelon
+*/

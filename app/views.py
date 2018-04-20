@@ -15,4 +15,4 @@ def about():
 
 @app.route('/database')
 def database():
-    return Report.query.all()[0].Substance
+    return render_template("mockup.html")#Report.query.all()[0].Substance
