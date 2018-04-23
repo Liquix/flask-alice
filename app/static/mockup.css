@@ -140,6 +140,17 @@ html, body {
   top: 3px;
 }
 
+#inputContainer #textInputBox {
+  background-color: inherit;
+  font-family: "Segoe UI";
+  font-size: 32px;
+  color: #F4CDA5;
+  height: 100%;
+  width: 90%;
+  border-style: none;
+  padding: 20px;
+}
+
 p {
   font-family: monospace;
 }
