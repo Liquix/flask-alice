@@ -9,6 +9,7 @@ html, body {
   height: 100%;
   display: flex;
   flex-flow: column;
+  overflow: hidden;
 }
 
 #sidebarContainer #titleText {
@@ -26,21 +27,42 @@ html, body {
   font-size: 36px;
   font-family: "Segoe UI", "Trebuchet MS", sans-serif;
   color: #F4CDA5;
-  font-style: normal;
+  font-style:oblique;
   font-weight: normal;
   text-align: center;
   line-height: 10px;
 }
 
-#inputContainer {
+#sidebarExperienceContainer {
+  margin: 0 auto;
+  overflow: scroll;
+  position: relative;
+  padding: 7.5% 7.5%;
+  top: 50px;
+}
+
+#sidebarExperienceList {
+  list-style-type: none;
+  padding: 0;
+  margin-top: -40px;
+  display: table;
+}
+
+#sidebarExperienceList li {
+  font-family: "Segoe UI";
+  font-size: 28px;
   background-color: #5DB5A4;
-  width: 75%;
-  height: 20%;
-  display: flex;
-  flex-flow: column;
-  position: absolute;
-  left: 25%;
-  bottom: 0;
+  display: table-cell;
+  float: left;
+  clear: left;
+  padding: 20px 65px;
+  margin: 12px;
+}
+
+/* not very portable - change this */
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
 }
 
 #displayContainer {
@@ -54,6 +76,17 @@ html, body {
   top: 0;
   right: 0;
   bottom: 25%;
+}
+
+#inputContainer {
+  background-color: #5DB5A4;
+  width: 75%;
+  height: 20%;
+  display: flex;
+  flex-flow: column;
+  position: absolute;
+  left: 25%;
+  bottom: 0;
 }
 
 #inputContainer #addLineButton {
@@ -70,6 +103,32 @@ html, body {
   top: 0;
   bottom: 0;
   border-style: none;
+}
+
+#sidebarContainer #newExperienceButton {
+  font-family: "Segoe UI";
+  font-weight: normal;
+  font-size: 32px;
+  color: #F4CDA5;
+  background-color: #ED5276;
+  padding: 10px 20px 25px 20px;
+  text-decoration: none;
+  position: relative;
+  width: 70%;
+  height: 100px;
+  right: 15%;
+  left: 15%;
+  top: 20px;
+  border-style: none;
+}
+
+#sidebarContainer #newExperienceButton:hover {
+  background: #F57A82;
+  text-decoration: none;
+}
+
+#sidebarContainer #newExperienceButton:active {
+  top: 23px;
 }
 
 #inputContainer #addLineButton:hover {
