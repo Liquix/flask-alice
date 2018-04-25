@@ -9,13 +9,15 @@
 
     <link rel="stylesheet" href="static/mockup.css">
     <link rel="icon" href="static/favicon.png">
+    <script type="text/javascript">$SCRIPT_ROOT = {{ request.script_root|tojson|safe }};</script>
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script type="text/javascript">$SCRIPT_ROOT = {{ request.script_root|tojson|safe }};</script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+
   </head>
   <body>
     <div id="sidebarContainer">
-      <h1 id="titleText">Fritattas</h1>
+      <h1 id="titleText">Drippy Days</h1>
       <h2 id="titleSubtext">Experience Reports</h2>
       <button id="newExperienceButton">New Experience</button>
       <div id="sidebarExperienceContainer">
@@ -46,6 +48,23 @@
     <div id="displayContainer">
 
     </div> <!-- /displayContainer -->
+
+    <div id="newReportPopup" title="Create Report">
+      <form name="newReportForm" action="" method="post">
+        <fieldset>
+          <label for="substanceName">Substance</label>
+          <input name="substanceName" id="substanceNameField" class="text ui-widget-content ui-corner-all">
+          <label for="dosage">Dosage</label>
+          <input name="dosage" id="dosageField" class="text ui-widget-content ui-corner-all">
+          <label for="dosagelabel">Dosage Units</label>
+          <input name="dosagelabel" id="dosagelabelField" class="text ui-widget-content ui-corner-all">
+          <label for="source">Source</label>
+          <input name="source" id="sourceField" class="text ui-widget-content ui-corner-all">
+          <!--<input type="submit" tabindex="-1" style="position:absolute; top:-1000px">-->
+        </fieldset>
+      </form>
+    </div> <!-- /newReportPopup -->
+
   </body>
   <script src="static/scripts.js"></script>
 </html>

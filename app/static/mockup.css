@@ -169,6 +169,41 @@ p {
   position: relative;
 
 }
+
+label, input {
+  display: block;
+}
+
+input.text {
+  margin-bottom: 12px;
+  width: 95%;
+  padding: 0.4em;
+}
+
+fieldset {
+  padding: 0;
+  border: 0;
+  margin-top: 25px;
+}
+
+.ui-dialog {
+  padding: 0.3em;
+  border: 1px;
+  background-color: #3C989E;
+  text-align: center;
+  font-family: "Segoe UI";
+  color: #F4CDA5;
+  font-size: 18px;
+}
+
+.ui-button {
+  text-align: center;
+  margin: 5%;
+}
+
+.ui-dialog-titlebar {
+  text-align: center;
+}
 /*
 #3C989E   Dark blue-green
 #5DB5A4   Medium seafoam green
