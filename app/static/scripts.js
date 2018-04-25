@@ -1,3 +1,7 @@
+var reportSubstance, reportDosage, reportDosagelabel, reportSource;
+
+// WE NEED A ROA FIELD!!!
+
 var dialog = $('#newReportPopup').dialog({
   autoOpen: false,
   height: 370,
@@ -11,7 +15,7 @@ var dialog = $('#newReportPopup').dialog({
     }
   },
   close: function() {
-    form[0].reset;
+    $('#newReportForm')[0].reset();
   }
 });
 
@@ -23,7 +27,12 @@ var form = dialog.find("form").on("submit", function(event){
 
 function addNewReport()
 {
-  console.log("Success");
+  reportSubstance = $('#substanceNameField').val();
+  reportDosage = $('#dosageField').val();
+  reportDosagelabel = $('#dosagelabelField').val();
+  reportSource = $('#sourceField').val();
+  console.log('Creating a new report on ' + reportSubstance + ' (' + reportDosage + reportDosagelabel + ') [Sourced from ' + reportSource + ']!');
+  $.getJSON($SCRIPT_ROOT + '/_new_report', {substance: reportSubstance, dosage: reportDosage, dosagelabel: reportDosagelabel, source: reportSource}, function(data){ console.log(data.result); });
   dialog.dialog("close");
 }
 
@@ -39,7 +48,7 @@ $('#addLineButton').click(function() {
 });
 
 $('#newExperienceButton').click(function() {
-  //$.getJSON($SCRIPT_ROOT + '/_new_report', {substance: 'LSD', dosage: 20, dosagelabel: 'ug', source: 'local'}, function(data){ console.log(data.result); });
+  $.getJSON($SCRIPT_ROOT + '/_new_report', {substance: 'LSD', dosage: 20, dosagelabel: 'ug', source: 'local'}, function(data){ console.log(data.result); });
   dialog.dialog("open");
 });
 

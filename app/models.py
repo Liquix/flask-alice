@@ -1,6 +1,6 @@
 from app import db
 
-# This should really go in a separate models.py file
+# WE NEED AN ROA FIELD!!!
 class Report(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     StartDate = db.Column(db.TIMESTAMP, nullable = False)
