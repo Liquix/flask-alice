@@ -24,6 +24,7 @@ var form = dialog.find("form").on("submit", function(event){
 function addNewReport()
 {
   console.log("Success");
+  dialog.dialog("close");
 }
 
 $('#addLineButton').click(function() {
