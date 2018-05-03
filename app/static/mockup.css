@@ -55,6 +55,7 @@ html, body {
   color: #F4CDA5;
   display: table-cell;
   float: left;
+  width: 62%;
   clear: left;
   padding: 20px 65px;
   margin: 12px;
@@ -175,15 +176,16 @@ label, input {
 }
 
 input.text {
-  margin-bottom: 12px;
-  width: 95%;
+  margin-bottom: 0px;
+  width: 96%;
   padding: 0.4em;
+  border: 0;
 }
 
 fieldset {
   padding: 0;
   border: 0;
-  margin-top: 25px;
+  margin-top: 0px;
 }
 
 .ui-dialog {
@@ -195,14 +197,69 @@ fieldset {
   color: #F4CDA5;
   font-size: 18px;
 }
-
+/*
 .ui-button {
   text-align: center;
+  padding: inherit;
+  width: 40%;
+  height: 40px;
+  border-style: none;
+  background-color: #ED5276;
+  font-family: "Segoe UI";
+  color: #F4CDA5;
+  font-size: 20px;
   margin: 5%;
+}*/
+
+.createReportBtnClass {
+  text-align: center;
+  padding: inherit;
+  width: 75%;
+  border-style: none;
+  background-color: #ED5276;
+  font-family: "Segoe UI";
+  color: #F4CDA5;
+  font-size: 30px;
+  padding-top: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 5px;
+  /*margin-right: 32px;*/
+  margin-right: 3.15%;
+  margin-top: 7px;
+  margin-bottom: 2px;
+}
+
+.createReportBtnClass:hover {
+  background: #F57A82;
+  text-decoration: none;
+}
+
+.cancelReportBtnClass {
+  width: 20%;
+  padding-top: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 5px;
+  margin-top: 7px;
+  /*float: right;*/
+  border-style: none;
+  background-color: #5DB5A4;
+  font-family: "Segoe UI";
+  font-weight: normal;
+  color: #F4CDA5;
+  font-size: 30px;
+}
+
+.cancelReportBtnClass:hover {
+  background: #F57A82;
 }
 
 .ui-dialog-titlebar {
   text-align: center;
+  padding: 10px;
+  font-size: 24px;
+  background-color: #5DB5A4;
 }
 /*
 #3C989E   Dark blue-green

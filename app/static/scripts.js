@@ -1,5 +1,7 @@
 var reportSubstance, reportDosage, reportDosagelabel, reportSource;
 
+var reportList = []
+
 // WE NEED A ROA FIELD!!!
 
 var dialog = $('#newReportPopup').dialog({
@@ -8,12 +10,21 @@ var dialog = $('#newReportPopup').dialog({
   width: 300,
   modal: true,
   closeText: "",
-  buttons: {
-    "Create": addNewReport,
-    Cancel: function() {
-      dialog.dialog("close");
-    }
-  },
+  closeOnEscape: true,
+  buttons: [
+      {
+        text: "Create Report",
+        "class": 'ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only createReportBtnClass',
+        click: addNewReport
+      },
+      {
+        text: '\u2716',
+        "class": 'ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only cancelReportBtnClass',
+        click: function(){
+          dialog.dialog("close");
+        }
+      }
+  ],
   close: function() {
     $('#newReportForm')[0].reset();
   }
@@ -25,6 +36,7 @@ var form = dialog.find("form").on("submit", function(event){
   dialog.dialog("close");
 });
 
+// Need to add it to sidebar and reportList as well!
 function addNewReport()
 {
   reportSubstance = $('#substanceNameField').val();
@@ -47,13 +59,26 @@ $('#newExperienceButton').click(function() {
   dialog.dialog("open");
 });
 
+// Load reports from MySQL db into reportList[]
+function loadAllReports(){
+  var i;
+  $.getJSON($SCRIPT_ROOT + '/_get_all_reports', {}, function(data){
+    for (i = 0; i < data.result.length; i++ ){
+      reportList.push(data.result[i]);
+      var $div = $("<li>", {"text": reportList[i].substance + " - " + reportList[i].dosage + reportList[i].dosage_label});
+      $('#sidebarExperienceList').append($div);
+    }
+  });
+}
+
 function addNewLine(){
   if($('#textInputBox').val() == ""){
     return;
   }
   var $div = $("<div>", {"class": "reportLine", "text": $('#textInputBox').val()});
   $('#displayContainer').append($div);
-  $.getJSON($SCRIPT_ROOT + '/_get_all_reports', {linetext: $('#textInputBox').val()}, function(data){ console.log(data.result); });
+  $.getJSON($SCRIPT_ROOT + '/_test', {linetext: $('#textInputBox').val()}, function(data){ console.log("GET return: " + data.result); });
+  //loadAllReports();
   document.getElementById('textInputBox').value = "";
 }
 
@@ -67,3 +92,6 @@ if (e.keyCode == 13 && !e.shiftKey)
   return false;
   }
 });
+
+// entrypoint
+loadAllReports();

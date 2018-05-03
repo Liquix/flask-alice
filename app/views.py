@@ -34,7 +34,7 @@ def test():
 def get_all_reports():
     reports = Report.query.all()
 
-    return jsonify(result=reports)
+    return jsonify(result=[r.serialize() for r in reports])
 
 @app.route('/_new_report')
 def new_report():

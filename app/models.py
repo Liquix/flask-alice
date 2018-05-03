@@ -15,13 +15,13 @@ class Report(db.Model):
 
     def serialize(self):
         return {
-        'id': id,
-        'start_date': StartDate,
-        'substance': Substance,
-        'dosage': Dosage,
-        'dosage_label': DosageLabel,
-        'roa': ROA,
-        'source': Source
+        'id': self.id,
+        'start_date': self.StartDate,
+        'substance': self.Substance,
+        'dosage': self.Dosage,
+        'dosage_label': self.DosageLabel,
+        'roa': self.ROA,
+        'source': self.Source
         }
 
 class ReportLine(db.Model):
