@@ -1,0 +1,21 @@
+exp reports ideas
+
+- create report / select report / etc have to return the ID column from db (primary key)
+- ability to delete reports (or move to trash?)
+- hide input area until there's a report open
+- there should be a 'currentReport' type variable (Report class?) with an ID field
+- simple to load and save report rows all we need in that table is ID of report
+- need input validation / sanitization / overflow prevention
+- mobile optimization is key
+- Report IDs are not sequential after one is deleted in the middle - may be a problem
+
+next step: clicking a report spits out every corresponding line to console
+
+- title at top with ALL info - T+ timer in the top right corner
+- new experience button replaced with close & delete buttons
+- add report button should.. 
+	append to list 
+	refresh list
+	scroll list to new report
+	highlight current report
+	replace itself with 'close' and 'delete' buttons
