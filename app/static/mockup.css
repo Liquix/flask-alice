@@ -51,6 +51,7 @@ html, body {
 #sidebarExperienceList li {
   font-family: "Segoe UI";
   font-size: 28px;
+  text-align: center;
   background-color: #5DB5A4;
   color: #F4CDA5;
   display: table-cell;
@@ -59,6 +60,11 @@ html, body {
   clear: left;
   padding: 20px 65px;
   margin: 12px;
+}
+
+#sidebarExperienceList li:hover {
+  cursor: pointer;
+  background-color: #F57A82;
 }
 
 /* not very portable - change this */
@@ -113,7 +119,7 @@ html, body {
   font-size: 32px;
   color: #F4CDA5;
   background-color: #ED5276;
-  padding: 10px 20px 25px 20px;
+  padding: 10px 20px 30px 20px;
   text-decoration: none;
   position: relative;
   width: 70%;
@@ -127,6 +133,7 @@ html, body {
 #sidebarContainer #newExperienceButton:hover {
   background: #F57A82;
   text-decoration: none;
+  cursor: pointer;
 }
 
 #sidebarContainer #newExperienceButton:active {
@@ -136,6 +143,7 @@ html, body {
 #inputContainer #addLineButton:hover {
   background: #F57A82;
   text-decoration: none;
+  cursor: pointer;
 }
 
 #inputContainer #addLineButton:active {
@@ -233,6 +241,7 @@ fieldset {
 .createReportBtnClass:hover {
   background: #F57A82;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .cancelReportBtnClass {
@@ -253,6 +262,7 @@ fieldset {
 
 .cancelReportBtnClass:hover {
   background: #F57A82;
+  cursor: pointer;
 }
 
 .ui-dialog-titlebar {

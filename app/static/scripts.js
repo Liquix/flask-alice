@@ -65,7 +65,7 @@ function loadAllReports(){
   $.getJSON($SCRIPT_ROOT + '/_get_all_reports', {}, function(data){
     for (i = 0; i < data.result.length; i++ ){
       reportList.push(data.result[i]);
-      var $div = $("<li>", {"text": reportList[i].substance + " - " + reportList[i].dosage + reportList[i].dosage_label});
+      var $div = $(/*"<li class=\"sidebarReport\">",*/"<li>", {"class": "sidebarReport", text: reportList[i].substance + " - " + reportList[i].dosage + reportList[i].dosage_label});
       $('#sidebarExperienceList').append($div);
     }
   });
