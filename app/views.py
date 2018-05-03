@@ -22,7 +22,7 @@ def database():
 @app.route('/_test')
 def test():
     linetext = request.args.get('linetext', "null", type=str)
-    linetext = linetext + " boo!"
+    #linetext = linetext + " boo!
     return jsonify(result=linetext)
 
 @app.route('/_new_report')
@@ -39,5 +39,5 @@ def new_report():
     newReport = Report(StartDate=startDate, Substance=substance, Dosage=dosage, DosageLabel=dosagelabel, Source=source)
     db.session.add(newReport)
     db.session.commit()
-    
+
     return jsonify(result=tester)
