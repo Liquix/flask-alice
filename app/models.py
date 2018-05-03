@@ -7,10 +7,22 @@ class Report(db.Model):
     Substance = db.Column(db.String(64), nullable = False)
     Dosage = db.Column(db.Float, nullable = False)
     DosageLabel = db.Column(db.String(16))
+    ROA = db.Column(db.String(64))
     Source = db.Column(db.String(64))
 
     def __repr__(self):
         return '<Report {}>'.format(self.id)
+
+    def serialize(self):
+        return {
+        'id': id,
+        'start_date': StartDate,
+        'substance': Substance,
+        'dosage': Dosage,
+        'dosage_label': DosageLabel,
+        'roa': ROA,
+        'source': Source
+        }
 
 class ReportLine(db.Model):
     LineID = db.Column(db.Integer, primary_key = True)
@@ -19,3 +31,6 @@ class ReportLine(db.Model):
     LineText = db.Column(db.String(512))
 
     report = db.relationship('Report', backref = db.backref('lines', lazy = True))
+
+    def __repr__(self):
+        return '<ReportLine {}>'.format(self.LineText)

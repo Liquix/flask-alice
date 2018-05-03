@@ -4,7 +4,7 @@ var reportSubstance, reportDosage, reportDosagelabel, reportSource;
 
 var dialog = $('#newReportPopup').dialog({
   autoOpen: false,
-  height: 370,
+  height: "auto",
   width: 300,
   modal: true,
   closeText: "",
@@ -31,8 +31,9 @@ function addNewReport()
   reportDosage = $('#dosageField').val();
   reportDosagelabel = $('#dosagelabelField').val();
   reportSource = $('#sourceField').val();
-  console.log('Creating a new report on ' + reportSubstance + ' (' + reportDosage + reportDosagelabel + ') [Sourced from ' + reportSource + ']!');
-  $.getJSON($SCRIPT_ROOT + '/_new_report', {substance: reportSubstance, dosage: reportDosage, dosagelabel: reportDosagelabel, source: reportSource}, function(data){ console.log(data.result); });
+  roaVal = $('#roaField').val();
+  //console.log('Creating a new report on ' + reportSubstance + ' (' + reportDosage + reportDosagelabel + ') [Sourced from ' + reportSource + ']!');
+  $.getJSON($SCRIPT_ROOT + '/_new_report', {substance: reportSubstance, dosage: reportDosage, dosagelabel: reportDosagelabel, roa: roaVal, source: reportSource}, function(data){ console.log(data.result); });
   dialog.dialog("close");
 }
 
@@ -52,7 +53,7 @@ function addNewLine(){
   }
   var $div = $("<div>", {"class": "reportLine", "text": $('#textInputBox').val()});
   $('#displayContainer').append($div);
-  $.getJSON($SCRIPT_ROOT + '/_test', {linetext: $('#textInputBox').val()}, function(data){ console.log(data.result); });
+  $.getJSON($SCRIPT_ROOT + '/_get_all_reports', {linetext: $('#textInputBox').val()}, function(data){ console.log(data.result); });
   document.getElementById('textInputBox').value = "";
 }
 
@@ -62,7 +63,7 @@ if (e.keyCode == 13 && !e.shiftKey)
   e.preventDefault();
 
   addNewLine();
-  
+
   return false;
   }
 });
