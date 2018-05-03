@@ -59,6 +59,11 @@ $('#newExperienceButton').click(function() {
   dialog.dialog("open");
 });
 
+$(document).on('click', '.sidebarReport', function() {
+  if($('#inputContainer').css('display') === 'none')    $('#inputContainer').css('display', 'inline');
+  else                                                  $('#inputContainer').css('display', 'none');
+});
+
 // Load reports from MySQL db into reportList[]
 function loadAllReports(){
   var i;
