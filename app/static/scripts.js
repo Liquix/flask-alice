@@ -45,7 +45,14 @@ function addNewReport()
   reportSource = $('#sourceField').val();
   roaVal = $('#roaField').val();
   //console.log('Creating a new report on ' + reportSubstance + ' (' + reportDosage + reportDosagelabel + ') [Sourced from ' + reportSource + ']!');
-  $.getJSON($SCRIPT_ROOT + '/_new_report', {substance: reportSubstance, dosage: reportDosage, dosagelabel: reportDosagelabel, roa: roaVal, source: reportSource}, function(data){ console.log(data.result); });
+  $.getJSON($SCRIPT_ROOT + '/_new_report', {substance: reportSubstance, dosage: reportDosage, dosagelabel: reportDosagelabel, roa: roaVal, source: reportSource}, function(data){
+    console.log(data.result);
+    reportList.push(data.result);
+    var newReport = data.result;
+    var $div = $("<li>", {"class": "sidebarReport", text: newReport.substance + " - " + newReport.dosage + newReport.dosage_label});
+    $('#sidebarExperienceList').append($div);
+  });
+
   dialog.dialog("close");
 }
 
@@ -70,7 +77,7 @@ function loadAllReports(){
   $.getJSON($SCRIPT_ROOT + '/_get_all_reports', {}, function(data){
     for (i = 0; i < data.result.length; i++ ){
       reportList.push(data.result[i]);
-      var $div = $(/*"<li class=\"sidebarReport\">",*/"<li>", {"class": "sidebarReport", text: reportList[i].substance + " - " + reportList[i].dosage + reportList[i].dosage_label});
+      var $div = $("<li>", {"class": "sidebarReport", text: reportList[i].substance + " - " + reportList[i].dosage + reportList[i].dosage_label});
       $('#sidebarExperienceList').append($div);
     }
   });

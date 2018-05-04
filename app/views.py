@@ -54,4 +54,4 @@ def new_report():
 
     #print("ID pulled from object: " + str(newReport.id), file=sys.stderr)
 
-    return jsonify(result=tester)
+    return jsonify(result=newReport.serialize())

@@ -26,11 +26,11 @@ class Report(db.Model):
 
 class ReportLine(db.Model):
     LineID = db.Column(db.Integer, primary_key = True)
-    ReportID = db.Column(db.Integer, db.ForeignKey('report.id'), nullable = False)
+    ReportID = db.Column(db.Integer, db.ForeignKey('report.id', ondelete='CASCADE'), nullable = False)
     Timestamp = db.Column(db.TIMESTAMP, nullable = False)
     LineText = db.Column(db.String(512))
 
-    report = db.relationship('Report', backref = db.backref('lines', lazy = True))
+    report = db.relationship('Report', backref = db.backref('lines', lazy = True, passive_deletes=True))
 
     def __repr__(self):
         return '<ReportLine {}>'.format(self.LineText)
