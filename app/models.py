@@ -34,3 +34,11 @@ class ReportLine(db.Model):
 
     def __repr__(self):
         return '<ReportLine {}>'.format(self.LineText)
+
+    def serialize(self):
+        return {
+        'lineid': self.LineID,
+        'reportid': self.ReportID,
+        'timestamp': self.Timestamp,
+        'LineText': self.LineText
+        }

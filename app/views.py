@@ -36,6 +36,18 @@ def get_all_reports():
 
     return jsonify(result=[r.serialize() for r in reports])
 
+@app.route('/_get_report_lines')
+def get_report_lines():
+    reportID = request.args.get('reportid', -1, type=int)
+    if(reportID == -1):
+        errLine = ReportLine(LineID=-1, ReportID=-1, Timestamp='0000-00-00 00:00:00', LineText='Could not retrieve ReportLines - invalid report ID')
+        return jsonify(result=errLine.serialize())
+
+    reportLines = ReportLine.query.filter(ReportLine.ReportID == reportID);
+
+    return jsonify(result=[rl.serialize() for rl in reportLines])
+
+
 @app.route('/_new_report')
 def new_report():
     rawTime = time.time()
