@@ -1,5 +1,6 @@
 exp reports ideas
 
+- enter button handling
 - create report / select report / etc have to return the ID column from db (primary key)
 - ability to delete reports (or move to trash?)
 - there should be a 'currentReport' type variable (Report class?) with an ID field
@@ -7,8 +8,9 @@ exp reports ideas
 - need input validation / sanitization / overflow prevention
 - mobile optimization is key
 - Report IDs are not sequential after one is deleted in the middle - may be a problem
+- Clean up default HTML favicon.ico request (@route '/favicon.ico' OR just convert PNG and serve both)
 
-next step: clicking a report spits out every corresponding line to console
+next step: adding report lines to DB, deleting reports / report lines from GUI
 
 - title at top with ALL info - T+ timer in the top right corner
 - add report button should.. 
