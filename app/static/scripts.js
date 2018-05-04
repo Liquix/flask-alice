@@ -1,6 +1,8 @@
 var reportSubstance, reportDosage, reportDosagelabel, reportSource;
 
-var reportList = []
+var reportList = [];
+var currentReport;
+var selectedReportLines = [];
 
 // WE NEED A ROA FIELD!!!
 
@@ -58,19 +60,38 @@ function addNewReport()
   dialog.dialog("close");
 }
 
+// Add report line when '+' button is clicked
 $('#addLineButton').click(function() {
   //alert( $('#textInputBox').val() );
   addNewLine();
 });
 
+// Open new report dialog when New Experience is clicked
 $('#newExperienceButton').click(function() {
   //$.getJSON($SCRIPT_ROOT + '/_new_report', {substance: 'LSD', dosage: 20, dosagelabel: 'ug', source: 'local'}, function(data){ console.log(data.result); });
   dialog.dialog("open");
 });
 
+// Switch currentReport & populate selectedReportLines when a report summary on the sidebar is clicked
 $(document).on('click', '.sidebarReport', function() {
+  // Toggle input area
   if($('#inputContainer').css('display') === 'none')    $('#inputContainer').css('display', 'inline');
-  else                                                  $('#inputContainer').css('display', 'none');
+  //else                                                  $('#inputContainer').css('display', 'none');
+
+  selectedReportID = this.id;
+  // currentReport = (search reportList for reportList[i].id = selectedReportID)
+    $.getJSON($SCRIPT_ROOT + '/_get_report_lines', {reportid: selectedReportID}, function(data){
+      selectedReportLines = data.result;
+
+      $('#displayContainer').empty();
+
+      var i;
+      for(i = 0; i < selectedReportLines.length; i++)
+      {
+        var $div = $("<div>", {"class": "reportLine", text: selectedReportLines[i].timestamp + ' - ' + selectedReportLines[i].linetext});
+        $('#displayContainer').append($div);
+      }
+    });
 });
 
 // Load reports from MySQL db into reportList[]
@@ -79,7 +100,7 @@ function loadAllReports(){
   $.getJSON($SCRIPT_ROOT + '/_get_all_reports', {}, function(data){
     for (i = 0; i < data.result.length; i++ ){
       reportList.push(data.result[i]);
-      var $div = $("<li>", {"class": "sidebarReport", text: reportList[i].substance + " - " + reportList[i].dosage + reportList[i].dosage_label});
+      var $div = $("<li>", {"class": "sidebarReport", "id": data.result[i].id, text: reportList[i].substance + " - " + reportList[i].dosage + reportList[i].dosage_label});
       $('#sidebarExperienceList').append($div);
     }
   });

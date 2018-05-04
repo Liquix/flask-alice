@@ -40,5 +40,5 @@ class ReportLine(db.Model):
         'lineid': self.LineID,
         'reportid': self.ReportID,
         'timestamp': self.Timestamp,
-        'LineText': self.LineText
+        'linetext': self.LineText
         }
