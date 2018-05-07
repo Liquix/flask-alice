@@ -195,6 +195,7 @@ p {
 .closeReportBtn:hover {
   color: #ED5276;
 }
+
 label, input {
   display: block;
 }

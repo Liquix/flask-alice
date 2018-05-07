@@ -56,6 +56,8 @@ function addNewReport()
 
     // This should be wrapped in a function which is passed a Report object - reused in loadAllReports()
     var $div = $("<li>", {"class": "sidebarReport", "id": data.result.id, text: newReport.substance + " - " + newReport.dosage + newReport.dosage_label});
+    var $cls = $("<span>", {"class": "closeReportBtn", text: "x"});
+    $div.append($cls);
     $('#sidebarExperienceList').append($div);
   });
 
@@ -103,9 +105,17 @@ $(document).on('click', '.sidebarReport', function() {
 $(document).on('click', '.closeReportBtn', function(e) {
   e.stopPropagation();
   toDeleteReportID = $(this).parent()[0].id;
+  parentDiv = $(this).parent()[0];
 
   $.getJSON($SCRIPT_ROOT + '/_delete_report', {reportid: toDeleteReportID}, function(data){
     console.log(data.result);
+    $(parentDiv).remove();
+    var i;
+    for(i = 0; i < reportList.length; i++){
+      if(reportList[i].id == toDeleteReportID)  reportList.splice(i, 1);
+    }
+    $('#displayContainer').empty();
+    $('#inputContainer').css('display', 'none');
   });
 });
 
