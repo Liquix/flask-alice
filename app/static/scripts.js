@@ -135,6 +135,15 @@ function timestampStringToEST(timestampString) {
   rawTime = timestampString.slice(-12, -7);
   if(rawTime.substr(0, 1) == "0")   rawTime = rawTime.slice(1);
 
+  hourInt = Number(rawTime.substr(0, 2));
+  if(hourInt > 12) {
+    hourInt -= 12;
+    rawTime = rawTime.replace(rawTime.substr(0, 2), hourInt.toString());
+    rawTime += 'PM';
+  }
+  else {
+    rawTime += 'AM';
+  }
   return rawTime;
 }
 
