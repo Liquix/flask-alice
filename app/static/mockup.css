@@ -10,6 +10,7 @@ html, body {
   display: flex;
   flex-flow: column;
   overflow: hidden;
+  box-shadow: inset -7px 0 9px -7px rgba(0, 0, 0, 0.6);
 }
 
 #sidebarContainer #titleText {
@@ -89,7 +90,7 @@ html, body {
 #inputContainer {
   background-color: #5DB5A4;
   width: 75%;
-  height: 20%;
+  height: 25%;
   display: flex;
   flex-flow: column;
   position: absolute;
@@ -156,9 +157,14 @@ html, body {
   font-family: "Segoe UI";
   font-size: 32px;
   color: #F4CDA5;
-  height: 100%;
+  height: auto;
   width: 90%;
   border-style: none;
+  overflow: none;
+  outline: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
   padding: 20px;
 }
 
