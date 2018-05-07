@@ -2,9 +2,9 @@ var reportSubstance, reportDosage, reportDosagelabel, reportSource;
 
 var reportList = [];
 var currentReport;
+var selectedReportID = -1; // may be unnecessary with currentReport?
 var selectedReportLines = [];
 
-// WE NEED A ROA FIELD!!!
 
 var dialog = $('#newReportPopup').dialog({
   autoOpen: false,
@@ -68,7 +68,6 @@ $('#addLineButton').click(function() {
 
 // Open new report dialog when New Experience is clicked
 $('#newExperienceButton').click(function() {
-  //$.getJSON($SCRIPT_ROOT + '/_new_report', {substance: 'LSD', dosage: 20, dosagelabel: 'ug', source: 'local'}, function(data){ console.log(data.result); });
   dialog.dialog("open");
 });
 
@@ -77,6 +76,9 @@ $(document).on('click', '.sidebarReport', function() {
   // Toggle input area
   if($('#inputContainer').css('display') === 'none')    $('#inputContainer').css('display', 'inline');
   //else                                                  $('#inputContainer').css('display', 'none');
+
+  // Do not send a duplicate request if the report has already been selected
+  //if(this.id == currentReport.id) return;
 
   selectedReportID = this.id;
   // currentReport = (search reportList for reportList[i].id = selectedReportID)
@@ -88,7 +90,7 @@ $(document).on('click', '.sidebarReport', function() {
       var i;
       for(i = 0; i < selectedReportLines.length; i++)
       {
-        var $div = $("<div>", {"class": "reportLine", text: selectedReportLines[i].timestamp + ' - ' + selectedReportLines[i].linetext});
+        var $div = $("<div>", {"class": "reportLine", text: timestampStringToEST(selectedReportLines[i].timestamp) + ' - ' + selectedReportLines[i].linetext});
         $('#displayContainer').append($div);
       }
     });
@@ -110,10 +112,11 @@ function addNewLine(){
   if($('#textInputBox').val() == ""){
     return;
   }
-  var $div = $("<div>", {"class": "reportLine", "text": $('#textInputBox').val()});
-  $('#displayContainer').append($div);
-  $.getJSON($SCRIPT_ROOT + '/_test', {linetext: $('#textInputBox').val()}, function(data){ console.log("GET return: " + data.result); });
-  //loadAllReports();
+
+  $.getJSON($SCRIPT_ROOT + '/_write_report_line', {linetext: $('#textInputBox').val(), reportid: selectedReportID}, function(data){
+    var $div = $("<div>", {"class": "reportLine", "text": timestampStringToEST(data.result.timestamp) + ' - ' + data.result.linetext});
+    $('#displayContainer').append($div);
+  });
   document.getElementById('textInputBox').value = "";
 }
 
@@ -127,6 +130,13 @@ if (e.keyCode == 13 && !e.shiftKey)
   return false;
   }
 });
+
+function timestampStringToEST(timestampString) {
+  rawTime = timestampString.slice(-12, -7);
+  if(rawTime.substr(0, 1) == "0")   rawTime = rawTime.slice(1);
+
+  return rawTime;
+}
 
 // entrypoint
 loadAllReports();

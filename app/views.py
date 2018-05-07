@@ -20,15 +20,22 @@ def about():
 def database():
     return render_template("mockup.html")#Report.query.all()[0].Substance
 
-@app.route('/_test')
+@app.route('/_write_report_line')
 def test():
     linetext = request.args.get('linetext', "null", type=str)
-
+    reportID = request.args.get('reportid', -1, type=int)
     # We also need to pass a report ID arg
     # Write to db
     # Return timestamp maybe?
 
-    return jsonify(result=linetext)
+    newLine = ReportLine(ReportID=reportID, LineText=linetext);
+    report = Report.query.filter(Report.id == reportID).first()
+
+    report.lines.append(newLine);
+    db.session.commit()
+    #debugstring = 'Writing line \"' + linetext + '\" to report ID #' + str(reportID) + ' (substance is ' + Report.query.filter(Report.id == reportID).first().Substance + ').'
+
+    return jsonify(result=newLine.serialize())
 
 @app.route('/_get_all_reports')
 def get_all_reports():
