@@ -99,6 +99,16 @@ $(document).on('click', '.sidebarReport', function() {
     });
 });
 
+// Delete report when its close button is clicked
+$(document).on('click', '.closeReportBtn', function(e) {
+  e.stopPropagation();
+  toDeleteReportID = $(this).parent()[0].id;
+
+  $.getJSON($SCRIPT_ROOT + '/_delete_report', {reportid: toDeleteReportID}, function(data){
+    console.log(data.result);
+  });
+});
+
 // Load reports from MySQL db into reportList[]
 function loadAllReports(){
   var i;
@@ -106,6 +116,8 @@ function loadAllReports(){
     for (i = 0; i < data.result.length; i++ ){
       reportList.push(data.result[i]);
       var $div = $("<li>", {"class": "sidebarReport", "id": data.result[i].id, text: reportList[i].substance + " - " + reportList[i].dosage + reportList[i].dosage_label});
+      var $cls = $("<span>", {"class": "closeReportBtn", text: "x"});
+      $div.append($cls);
       $('#sidebarExperienceList').append($div);
     }
   });
