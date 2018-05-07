@@ -48,12 +48,14 @@ function addNewReport()
   roaVal = $('#roaField').val();
   //console.log('Creating a new report on ' + reportSubstance + ' (' + reportDosage + reportDosagelabel + ') [Sourced from ' + reportSource + ']!');
   $.getJSON($SCRIPT_ROOT + '/_new_report', {substance: reportSubstance, dosage: reportDosage, dosagelabel: reportDosagelabel, roa: roaVal, source: reportSource}, function(data){
-    console.log('New report: ' + data.result);
+
     reportList.push(data.result);
     var newReport = data.result;
 
+    selectedReportID = data.result.id;
+
     // This should be wrapped in a function which is passed a Report object - reused in loadAllReports()
-    var $div = $("<li>", {"class": "sidebarReport", text: newReport.substance + " - " + newReport.dosage + newReport.dosage_label});
+    var $div = $("<li>", {"class": "sidebarReport", "id": data.result.id, text: newReport.substance + " - " + newReport.dosage + newReport.dosage_label});
     $('#sidebarExperienceList').append($div);
   });
 
@@ -81,6 +83,7 @@ $(document).on('click', '.sidebarReport', function() {
   //if(this.id == currentReport.id) return;
 
   selectedReportID = this.id;
+
   // currentReport = (search reportList for reportList[i].id = selectedReportID)
     $.getJSON($SCRIPT_ROOT + '/_get_report_lines', {reportid: selectedReportID}, function(data){
       selectedReportLines = data.result;

@@ -74,3 +74,16 @@ def new_report():
     #print("ID pulled from object: " + str(newReport.id), file=sys.stderr)
 
     return jsonify(result=newReport.serialize())
+
+@app.route('/_delete_report')
+def delete_report():
+    reportID = request.args.get('reportid', -1, type=int)
+
+    if(reportID == -1):
+        return jsonify(result='Could not delete report - invalid report ID (' + str(reportID) + ')')
+
+    toDelete = Report.query.filter(Report.id == reportID).first()
+    db.session.delete(toDelete)
+    db.session.commit()
+
+    return jsonify(result='Successfully deleted report (' + str(reportID) + ')')
