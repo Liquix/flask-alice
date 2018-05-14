@@ -78,7 +78,8 @@ html, body {
   background-color: #FFFFF0;
   width: 75%;
   height: 75%;
-  display: flex;
+  overflow-x: hidden;
+  overflow-y: auto;
   flex-flow: column;
   position: absolute;
   left: 25%;
@@ -97,6 +98,7 @@ html, body {
   left: 25%;
   bottom: 0;
   display: none;
+  /*box-shadow: inset -7px 0 9px -7px rgba(0, 0, 0, 0.6);*/
 }
 
 #inputContainer #addLineButton {
@@ -162,9 +164,10 @@ html, body {
   border-style: none;
   overflow: none;
   outline: none;
+  /*
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
-  box-shadow: none;
+  box-shadow: none;*/
   padding: 20px;
 }
 
@@ -172,17 +175,23 @@ p {
   font-family: monospace;
 }
 
+/*
+#3C989E   Dark blue-green
+#5DB5A4   Medium seafoam green
+*/
 .reportLine {
-  padding: 10px;
+  padding: 12px;
   margin: 0 auto;
-  top: 5%;
-  margin-bottom: 2.5%;
-  background-color: #F57A82;
+  background-color: #3C989E;
   color: #F4CDA5;
-  width: 90%;
+  width: 100%;
   font-family: "Segoe UI";
   font-size: 24px;
   position: relative;
+}
+
+.reportLine:nth-child(even){
+  background-color: #5DB5A4;
 }
 
 .closeReportBtn {
@@ -223,19 +232,6 @@ fieldset {
   font-size: 18px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);/*10px 10px 5px grey;*/
 }
-/*
-.ui-button {
-  text-align: center;
-  padding: inherit;
-  width: 40%;
-  height: 40px;
-  border-style: none;
-  background-color: #ED5276;
-  font-family: "Segoe UI";
-  color: #F4CDA5;
-  font-size: 20px;
-  margin: 5%;
-}*/
 
 .createReportBtnClass {
   text-align: center;

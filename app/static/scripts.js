@@ -75,6 +75,13 @@ $('#newExperienceButton').click(function() {
   dialog.dialog("open");
 });
 
+function scrollDisplayAreaToBottom()
+{
+  var div = document.getElementById('displayContainer');
+
+  div.scrollTop = div.scrollHeight;
+}
+
 // Switch currentReport & populate selectedReportLines when a report summary on the sidebar is clicked
 $(document).on('click', '.sidebarReport', function() {
   // Toggle input area
@@ -98,6 +105,8 @@ $(document).on('click', '.sidebarReport', function() {
         var $div = $("<div>", {"class": "reportLine", text: timestampStringToEST(selectedReportLines[i].timestamp) + ' - ' + selectedReportLines[i].linetext});
         $('#displayContainer').append($div);
       }
+
+      scrollDisplayAreaToBottom();
     });
 });
 
@@ -141,6 +150,7 @@ function addNewLine(){
   $.getJSON($SCRIPT_ROOT + '/_write_report_line', {linetext: $('#textInputBox').val(), reportid: selectedReportID}, function(data){
     var $div = $("<div>", {"class": "reportLine", "text": timestampStringToEST(data.result.timestamp) + ' - ' + data.result.linetext});
     $('#displayContainer').append($div);
+    scrollDisplayAreaToBottom();
   });
   document.getElementById('textInputBox').value = "";
 }

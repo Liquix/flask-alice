@@ -1,6 +1,5 @@
 from app import db
 
-# WE NEED AN ROA FIELD!!!
 class Report(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     StartDate = db.Column(db.TIMESTAMP, nullable = False)
