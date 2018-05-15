@@ -10,7 +10,7 @@ html, body {
   display: flex;
   flex-flow: column;
   overflow: hidden;
-  box-shadow: inset -7px 0 9px -7px rgba(0, 0, 0, 0.6);
+  box-shadow: inset -7px 0 9px -7px rgba(0, 0, 0, 1.0);
 }
 
 #sidebarContainer #titleText {
@@ -98,7 +98,6 @@ html, body {
   left: 25%;
   bottom: 0;
   display: none;
-  /*box-shadow: inset -7px 0 9px -7px rgba(0, 0, 0, 0.6);*/
 }
 
 #inputContainer #addLineButton {
@@ -115,6 +114,7 @@ html, body {
   top: 0;
   bottom: 0;
   border-style: none;
+  box-shadow: inset -7px 10px 9px -7px rgba(0, 0, 0, 0.6);
 }
 
 #sidebarContainer #newExperienceButton {
@@ -164,10 +164,7 @@ html, body {
   border-style: none;
   overflow: none;
   outline: none;
-  /*
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;*/
+  box-shadow: inset -7px 10px 9px -7px rgba(0, 0, 0, 0.6);
   padding: 20px;
 }
 
@@ -175,10 +172,6 @@ p {
   font-family: monospace;
 }
 
-/*
-#3C989E   Dark blue-green
-#5DB5A4   Medium seafoam green
-*/
 .reportLine {
   padding: 12px;
   margin: 0 auto;
