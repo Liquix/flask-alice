@@ -1,21 +1,24 @@
 exp reports ideas
 
+Mobile layout
+
+Substance previewer
+- Build MySQL table with all substances from stash
+- Pull psychonautwiki data into database
+- Match Report.Substance to Substance.Name 
+- Small display window / part of title bar for description, dosage ranges, durations, etc
+
+Title bar
+- All information on report including ROA and source
+- T+ countdown for dosing? click to activate?
+- Psychonautwiki substance preview pane (may put in bottom left if too crowded)
+
+Add Report Button
+- Scroll list to new report
+- Highlight current report
+- Hide itself, replace with 'close and save' & 'delete report' buttons
+
+Cleanup 
 - enter button handling
-- create report / select report / etc have to return the ID column from db (primary key)
-- there should be a 'currentReport' type variable (Report class?) with an ID field
 - need input validation / sanitization / overflow prevention
-- mobile optimization is key
-- Report IDs are not sequential after one is deleted in the middle - may be a problem
 - Clean up default HTML favicon.ico request (@route '/favicon.ico' OR just convert PNG and serve both)
-- display area scrolling
-
-next step: deleting report lines
-
-- title at top with ALL info - T+ timer in the top right corner
-- add report button should.. 
-	X append to list 
-	X refresh list
-	scroll list to new report
-	highlight current report
-	X show input area if hidden
-	replace itself with 'close' and 'delete' buttons

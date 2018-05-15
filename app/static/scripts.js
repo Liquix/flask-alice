@@ -6,6 +6,18 @@ var selectedReportID = -1; // may be unnecessary with currentReport?
 var selectedReportLines = [];
 
 
+// entrypoint
+loadAllReports();
+
+function setNewUserHint(){
+  if(reportList.length > 0){
+    $('#getStartedHint').children()[0].innerHTML = "Select one of your previous reports to view it or click <font color=\"#3C989E\">'New Experience'</font> to create a new one!";
+  }
+  else{
+    $('#getStartedHint').children()[0].innerHTML = "Click <font color=\"#3C989E\">'New Experience'</font> to get started!";
+  }
+}
+
 var dialog = $('#newReportPopup').dialog({
   autoOpen: false,
   height: "auto",
@@ -44,6 +56,11 @@ function addNewReport()
   reportSubstance = $('#substanceNameField').val();
   reportDosage = $('#dosageField').val();
   reportDosagelabel = $('#dosagelabelField').val();
+
+  // Todo: error popups / field highlighting / more robust checks
+  if(reportSubstance == "" || reportSubstance == " " || reportSubstance == null || reportDosage == null || reportDosage == undefined || reportDosage <= 0)
+    return;
+
   reportSource = $('#sourceField').val();
   roaVal = $('#roaField').val();
   //console.log('Creating a new report on ' + reportSubstance + ' (' + reportDosage + reportDosagelabel + ') [Sourced from ' + reportSource + ']!');
@@ -127,6 +144,7 @@ $(document).on('click', '.closeReportBtn', function(e) {
     }
     $('#displayContainer').empty();
     $('#inputContainer').css('display', 'none');
+    setNewUserHint();
   });
 });
 
@@ -154,6 +172,8 @@ function loadAllReports(){
       $div.append($cls);
       $('#sidebarExperienceList').append($div);
     }
+
+    setNewUserHint();
   });
 }
 
@@ -163,8 +183,10 @@ function addNewLine(){
   }
 
   $.getJSON($SCRIPT_ROOT + '/_write_report_line', {linetext: $('#textInputBox').val(), reportid: selectedReportID}, function(data){
-    var $div = $("<div>", {"class": "reportLine", "id": selectedReportLines[i].lineid, "text": timestampStringToEST(data.result.timestamp) + ' - ' + data.result.linetext});
+    console.log(data.result);
+    var $div = $("<div>", {"class": "reportLine", "id": data.result.lineid, "text": timestampStringToEST(data.result.timestamp) + ' - ' + data.result.linetext});
     var $cls = $("<span>", {"class": "closeLineBtn", text: "x"});
+    $div.append($cls);
     $('#displayContainer').append($div);
 
     scrollDisplayAreaToBottom();
@@ -198,6 +220,3 @@ function timestampStringToEST(timestampString) {
   }
   return rawTime;
 }
-
-// entrypoint
-loadAllReports();

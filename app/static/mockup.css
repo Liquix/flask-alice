@@ -1,8 +1,21 @@
+/* Global styling */
 html, body {
-  height:100%;
+  height: 100%;
   margin: 0;
+  background: transparent url(flasks_big.png) space 0 0px;
 }
 
+p {
+  font-family: monospace;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+
+/* Sidebar */
 #sidebarContainer {
   background-color: #3C989E;
   width: 25%;
@@ -68,55 +81,6 @@ html, body {
   background-color: #F57A82;
 }
 
-/* not very portable - change this */
-::-webkit-scrollbar {
-  width: 0px;
-  background: transparent;
-}
-
-#displayContainer {
-  background-color: #FFFFF0;
-  width: 75%;
-  height: 75%;
-  overflow-x: hidden;
-  overflow-y: auto;
-  flex-flow: column;
-  position: absolute;
-  left: 25%;
-  top: 0;
-  right: 0;
-  bottom: 25%;
-}
-
-#inputContainer {
-  background-color: #5DB5A4;
-  width: 75%;
-  height: 25%;
-  display: flex;
-  flex-flow: column;
-  position: absolute;
-  left: 25%;
-  bottom: 0;
-  display: none;
-}
-
-#inputContainer #addLineButton {
-  font-family: Arial;
-  color: #F4CDA5;
-  font-size: 80px;
-  background: #ED5276;
-  padding: 10px 20px 10px 20px;
-  text-decoration: none;
-  position: absolute;
-  width: 10%;
-  right: 0;
-  left: 90%;
-  top: 0;
-  bottom: 0;
-  border-style: none;
-  box-shadow: inset -7px 10px 9px -7px rgba(0, 0, 0, 0.6);
-}
-
 #sidebarContainer #newExperienceButton {
   font-family: "Segoe UI";
   font-weight: normal;
@@ -144,32 +108,32 @@ html, body {
   top: 23px;
 }
 
-#inputContainer #addLineButton:hover {
-  background: #F57A82;
-  text-decoration: none;
-  cursor: pointer;
+.closeReportBtn {
+  margin-top: -30px;
+  margin-right: -60px;
+  float: right;
+  font-weight: bold;
 }
 
-#inputContainer #addLineButton:active {
-  top: 3px;
+.closeReportBtn:hover {
+  color: #ED5276;
 }
 
-#inputContainer #textInputBox {
-  background-color: inherit;
-  font-family: "Segoe UI";
-  font-size: 32px;
-  color: #F4CDA5;
-  height: auto;
-  width: 90%;
-  border-style: none;
-  overflow: none;
-  outline: none;
-  box-shadow: inset -7px 10px 9px -7px rgba(0, 0, 0, 0.6);
-  padding: 20px;
-}
 
-p {
-  font-family: monospace;
+/* Display area */
+#displayContainer {
+  /*background-color: #FFFFF0;*/
+  width: 75%;
+  height: 75%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  flex-flow: column;
+  position: absolute;
+  left: 25%;
+  top: 0;
+  right: 0;
+  bottom: 25%;
+
 }
 
 .reportLine {
@@ -191,19 +155,6 @@ p {
   display: inherit;
 }
 
-/* For deleting reports from sidebar */
-.closeReportBtn {
-  margin-top: -30px;
-  margin-right: -60px;
-  float: right;
-  font-weight: bold;
-}
-
-.closeReportBtn:hover {
-  color: #ED5276;
-}
-
-/* For deleting individual lines from reportArea */
 .closeLineBtn {
   position:relative;
   float: right;
@@ -218,6 +169,76 @@ p {
   cursor: pointer;
 }
 
+#getStartedHint p {
+  position: absolute;
+  width: 50%;
+  height: 20%;
+  top: 50%;
+  left: 50%;
+  margin: -10% 0 0 -25%;
+  font-family: "Segoe UI";
+  font-weight: bold;
+  text-align: center;
+  color: #5DB5A4;
+  font-size: 32px;
+}
+
+/* Input area */
+#inputContainer {
+  background-color: #5DB5A4;
+  width: 75%;
+  height: 25%;
+  display: flex;
+  flex-flow: column;
+  position: absolute;
+  left: 25%;
+  bottom: 0;
+  display: none;
+}
+
+#inputContainer #textInputBox {
+  background-color: inherit;
+  font-family: "Segoe UI";
+  font-size: 32px;
+  color: #F4CDA5;
+  height: auto;
+  width: 90%;
+  border-style: none;
+  overflow: none;
+  outline: none;
+  box-shadow: inset -7px 10px 9px -7px rgba(0, 0, 0, 0.6);
+  padding: 20px;
+}
+
+#inputContainer #addLineButton {
+  font-family: Arial;
+  color: #F4CDA5;
+  font-size: 80px;
+  background: #ED5276;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+  position: absolute;
+  width: 10%;
+  right: 0;
+  left: 90%;
+  top: 0;
+  bottom: 0;
+  border-style: none;
+  box-shadow: inset -7px 10px 9px -7px rgba(0, 0, 0, 0.6);
+}
+
+#inputContainer #addLineButton:hover {
+  background: #F57A82;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#inputContainer #addLineButton:active {
+  top: 3px;
+}
+
+
+/* New report popup */
 label, input {
   display: block;
 }
@@ -259,7 +280,6 @@ fieldset {
   padding-left: 10px;
   padding-right: 10px;
   padding-bottom: 5px;
-  /*margin-right: 32px;*/
   margin-right: 3.15%;
   margin-top: 7px;
   margin-bottom: 2px;
@@ -278,7 +298,6 @@ fieldset {
   padding-right: 10px;
   padding-bottom: 5px;
   margin-top: 7px;
-  /*float: right;*/
   border-style: none;
   background-color: #5DB5A4;
   font-family: "Segoe UI";
