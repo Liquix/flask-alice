@@ -102,7 +102,9 @@ $(document).on('click', '.sidebarReport', function() {
       var i;
       for(i = 0; i < selectedReportLines.length; i++)
       {
-        var $div = $("<div>", {"class": "reportLine", text: timestampStringToEST(selectedReportLines[i].timestamp) + ' - ' + selectedReportLines[i].linetext});
+        var $div = $("<div>", {"class": "reportLine", "id": selectedReportLines[i].lineid, text: timestampStringToEST(selectedReportLines[i].timestamp) + ' - ' + selectedReportLines[i].linetext});
+        var $cls = $("<span>", {"class": "closeLineBtn", text: "x"});
+        $div.append($cls);
         $('#displayContainer').append($div);
       }
 
@@ -117,7 +119,7 @@ $(document).on('click', '.closeReportBtn', function(e) {
   parentDiv = $(this).parent()[0];
 
   $.getJSON($SCRIPT_ROOT + '/_delete_report', {reportid: toDeleteReportID}, function(data){
-    console.log(data.result);
+    //console.log(data.result);
     $(parentDiv).remove();
     var i;
     for(i = 0; i < reportList.length; i++){
@@ -125,6 +127,19 @@ $(document).on('click', '.closeReportBtn', function(e) {
     }
     $('#displayContainer').empty();
     $('#inputContainer').css('display', 'none');
+  });
+});
+
+// Delete report line when a line report delete button is clicked
+$(document).on('click', '.closeLineBtn', function(e){
+  e.stopPropagation();
+
+  toDeleteLineID = $(this).parent()[0].id;
+  parentDiv = $(this).parent()[0];
+
+  $.getJSON($SCRIPT_ROOT + '/_delete_line', {lineid: toDeleteLineID}, function(data){
+    //console.log(data.result);
+    $(parentDiv).remove();
   });
 });
 
@@ -148,8 +163,10 @@ function addNewLine(){
   }
 
   $.getJSON($SCRIPT_ROOT + '/_write_report_line', {linetext: $('#textInputBox').val(), reportid: selectedReportID}, function(data){
-    var $div = $("<div>", {"class": "reportLine", "text": timestampStringToEST(data.result.timestamp) + ' - ' + data.result.linetext});
+    var $div = $("<div>", {"class": "reportLine", "id": selectedReportLines[i].lineid, "text": timestampStringToEST(data.result.timestamp) + ' - ' + data.result.linetext});
+    var $cls = $("<span>", {"class": "closeLineBtn", text: "x"});
     $('#displayContainer').append($div);
+
     scrollDisplayAreaToBottom();
   });
   document.getElementById('textInputBox').value = "";

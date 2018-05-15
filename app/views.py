@@ -54,6 +54,18 @@ def get_report_lines():
 
     return jsonify(result=[rl.serialize() for rl in reportLines])
 
+@app.route('/_delete_line')
+def delete_line():
+    lineID = request.args.get('lineid', -1, type=int)
+    if(lineID == -1):
+        return jsonify(result="delete_line() lineID parameter missing - got -1");
+
+    lineToDelete = ReportLine.query.filter(ReportLine.LineID == lineID).first();
+
+    db.session.delete(lineToDelete)
+    db.session.commit()
+
+    return jsonify(result="Successfully delete line #" + str(lineID))
 
 @app.route('/_new_report')
 def new_report():

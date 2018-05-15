@@ -187,6 +187,11 @@ p {
   background-color: #5DB5A4;
 }
 
+.reportLine:hover > .closeLineBtn {
+  display: inherit;
+}
+
+/* For deleting reports from sidebar */
 .closeReportBtn {
   margin-top: -30px;
   margin-right: -60px;
@@ -196,6 +201,21 @@ p {
 
 .closeReportBtn:hover {
   color: #ED5276;
+}
+
+/* For deleting individual lines from reportArea */
+.closeLineBtn {
+  position:relative;
+  float: right;
+  margin-right: 1.5%;
+  top: -16px;
+  font-weight: bold;
+  display: none;
+}
+
+.closeLineBtn:hover {
+  color: #ED5276;
+  cursor: pointer;
 }
 
 label, input {
